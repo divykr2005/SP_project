@@ -111,26 +111,6 @@ These thresholds support report discussion, but they should not be presented as 
 | O-D-2.mat | Outer race fault | Decreasing then increasing speed | 1.0465 | Mild abnormal |
 | O-D-3.mat | Outer race fault | Decreasing then increasing speed | 1.024 | Mild abnormal |
 
-## Generated Figures
-
-- [speed_profiles_trial3.png](../figures/speed_profiles_trial3.png)
-- [waveform_comparison_ha_ia_oa.png](../figures/waveform_comparison_ha_ia_oa.png)
-- [spectrogram_h-a-3.png](../figures/spectrogram_h-a-3.png)
-- [envelope_spectrum_h-a-3.png](../figures/envelope_spectrum_h-a-3.png)
-- [order_spectrum_h-a-3.png](../figures/order_spectrum_h-a-3.png)
-- [spectrogram_i-a-3.png](../figures/spectrogram_i-a-3.png)
-- [envelope_spectrum_i-a-3.png](../figures/envelope_spectrum_i-a-3.png)
-- [order_spectrum_i-a-3.png](../figures/order_spectrum_i-a-3.png)
-- [spectrogram_o-a-3.png](../figures/spectrogram_o-a-3.png)
-- [envelope_spectrum_o-a-3.png](../figures/envelope_spectrum_o-a-3.png)
-- [order_spectrum_o-a-3.png](../figures/order_spectrum_o-a-3.png)
-- [feature_summary_by_health.png](../figures/feature_summary_by_health.png)
-- [feature_separation_scores.png](../figures/feature_separation_scores.png)
-- [confusion_health_window_knn.png](../figures/confusion_health_window_knn.png)
-- [confusion_health_file_knn.png](../figures/confusion_health_file_knn.png)
-- [confusion_speed_file_knn.png](../figures/confusion_speed_file_knn.png)
-- [confusion_12_case_file_knn.png](../figures/confusion_12_case_file_knn.png)
-- [severity_score_by_file.png](../figures/severity_score_by_file.png)
 
 ## Limitations
 
