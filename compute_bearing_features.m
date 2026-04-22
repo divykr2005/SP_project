@@ -1,0 +1,69 @@
+function feat = compute_bearing_features(vibSegment, speedSegment, fs)
+%COMPUTE_BEARING_FEATURES Base-MATLAB features for one analysis window.
+
+x = double(vibSegment(:));
+s = double(speedSegment(:));
+x = x - mean(x);
+
+n = numel(x);
+rmsValue = sqrt(mean(x .^ 2));
+stdValue = sqrt(mean((x - mean(x)) .^ 2));
+varianceValue = stdValue .^ 2;
+meanAbs = mean(abs(x));
+maxAbs = max(abs(x));
+peakToPeak = max(x) - min(x);
+
+safeRms = max(rmsValue, eps);
+safeStd = max(stdValue, eps);
+safeMeanAbs = max(meanAbs, eps);
+
+crestFactor = maxAbs / safeRms;
+impulseFactor = maxAbs / safeMeanAbs;
+shapeFactor = rmsValue / safeMeanAbs;
+skewnessValue = mean((x / safeStd) .^ 3);
+kurtosisValue = mean((x / safeStd) .^ 4);
+energyValue = mean(x .^ 2);
+
+Y = abs(fft(x));
+halfCount = floor(n / 2) + 1;
+Y = Y(1:halfCount);
+Y(1) = 0;
+freq = (0:(halfCount - 1))' * (fs / n);
+powerSpectrum = Y .^ 2;
+totalPower = sum(powerSpectrum) + eps;
+
+spectralEnergy = totalPower / halfCount;
+spectralCentroid = sum(freq .* powerSpectrum) / totalPower;
+lowFreqRatio = sum(powerSpectrum(freq < 5000)) / totalPower;
+highFreqRatio = sum(powerSpectrum(freq >= 5000 & freq <= 50000)) / totalPower;
+
+speedMean = mean(s);
+speedStd = sqrt(mean((s - speedMean) .^ 2));
+speedStart = s(1);
+speedEnd = s(end);
+speedSlope = (speedEnd - speedStart) / (numel(s) / fs);
+rmsPerSpeed = rmsValue / max(abs(speedMean), eps);
+
+feat = [ ...
+    rmsValue, ...
+    stdValue, ...
+    varianceValue, ...
+    meanAbs, ...
+    peakToPeak, ...
+    crestFactor, ...
+    impulseFactor, ...
+    shapeFactor, ...
+    skewnessValue, ...
+    kurtosisValue, ...
+    energyValue, ...
+    spectralEnergy, ...
+    spectralCentroid, ...
+    lowFreqRatio, ...
+    highFreqRatio, ...
+    rmsPerSpeed, ...
+    speedMean, ...
+    speedStd, ...
+    speedStart, ...
+    speedEnd, ...
+    speedSlope];
+end

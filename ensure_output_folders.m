@@ -1,0 +1,16 @@
+function ensure_output_folders(cfg)
+%ENSURE_OUTPUT_FOLDERS Create output folders used by the workflow.
+
+folders = { ...
+    cfg.outputFolder, ...
+    cfg.figureFolder, ...
+    cfg.tableFolder, ...
+    cfg.modelFolder, ...
+    cfg.reportFolder};
+
+for k = 1:numel(folders)
+    if ~exist(folders{k}, 'dir')
+        mkdir(folders{k});
+    end
+end
+end
